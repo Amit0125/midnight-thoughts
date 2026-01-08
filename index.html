@@ -4,76 +4,65 @@
 <meta charset="UTF-8">
 <title>Midnight Thoughts</title>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
-
-const firebaseConfig = {
- apiKey: "AIzaSyDWB2GGz8t1jemFswGAe7cicTlbXzTGlI4",
- authDomain: "midnight-thoughts-697a5.firebaseapp.com",
- projectId: "midnight-thoughts-697a5",
- storageBucket: "midnight-thoughts-697a5.firebasestorage.app",
- messagingSenderId: "188976417708",
- appId: "1:188976417708:web:6413f982416dd015dd8809"
-};
-
-window.app = initializeApp(firebaseConfig);
-window.db = getFirestore(app);
-</script>
-
 <style>
-body{margin:0;font-family:Segoe UI;color:white;text-align:center;background:black;overflow-x:hidden;}
+body{
+margin:0;font-family:Segoe UI;color:white;text-align:center;background:black;overflow-x:hidden}
+
+/* Nebula */
 body::before{content:"";position:fixed;inset:0;z-index:-4;
 background:
 radial-gradient(circle at 25% 35%, rgba(160,70,255,.28), transparent 45%),
 radial-gradient(circle at 70% 65%, rgba(60,200,255,.22), transparent 50%),
-radial-gradient(circle at 55% 85%, rgba(255,150,60,.18), transparent 45%);
-}
+radial-gradient(circle at 55% 85%, rgba(255,150,60,.18), transparent 45%)}
+
+/* Stars */
 body::after{content:"";position:fixed;inset:0;z-index:-3;
 background:
 radial-gradient(1px 1px at 3% 5%, #fff, transparent),
-radial-gradient(1px 1px at 7% 20%, #fff, transparent),
-radial-gradient(1px 1px at 10% 40%, #fff, transparent),
-radial-gradient(1px 1px at 14% 65%, #fff, transparent),
-radial-gradient(1px 1px at 18% 85%, #fff, transparent),
-radial-gradient(1px 1px at 25% 15%, #fff, transparent),
-radial-gradient(2px 2px at 30% 35%, #fff, transparent),
-radial-gradient(1px 1px at 35% 70%, #fff, transparent),
-radial-gradient(2px 2px at 40% 50%, #fff, transparent),
-radial-gradient(1px 1px at 45% 25%, #fff, transparent),
-radial-gradient(2px 2px at 50% 80%, #fff, transparent),
-radial-gradient(1px 1px at 55% 60%, #fff, transparent),
-radial-gradient(2px 2px at 60% 20%, #fff, transparent),
-radial-gradient(1px 1px at 65% 40%, #fff, transparent),
-radial-gradient(2px 2px at 70% 70%, #fff, transparent),
-radial-gradient(1px 1px at 75% 90%, #fff, transparent),
-radial-gradient(2px 2px at 80% 30%, #fff, transparent),
-radial-gradient(1px 1px at 85% 55%, #fff, transparent),
-radial-gradient(2px 2px at 90% 75%, #fff, transparent),
-radial-gradient(1px 1px at 95% 45%, #fff, transparent);
-opacity:.85;}
+radial-gradient(1px 1px at 15% 40%, #fff, transparent),
+radial-gradient(2px 2px at 50% 70%, #fff, transparent),
+radial-gradient(1px 1px at 80% 30%, #fff, transparent);
+opacity:.9}
+
+/* Planets */
+.saturn{position:fixed;right:5%;top:18%;width:150px;height:150px;border-radius:50%;
+background:radial-gradient(circle at 30% 30%, #fff7d6, #f1d29a 45%, #b88b4a 80%);
+box-shadow:0 0 70px rgba(255,220,150,.5);z-index:-2}
+.saturn::after{content:"";position:absolute;left:-40%;top:40%;width:180%;height:28%;
+border:2px solid rgba(255,255,255,.4);border-radius:50%;transform:rotate(-18deg)}
+
+.mars{position:fixed;left:8%;top:22%;width:80px;height:80px;border-radius:50%;
+background:radial-gradient(circle at 30% 30%, #ffb199, #c1442e 65%, #7a2b1c);
+box-shadow:0 0 35px rgba(255,100,60,.6);z-index:-2}
+
+.neptune{position:fixed;right:12%;top:70%;width:95px;height:95px;border-radius:50%;
+background:radial-gradient(circle at 30% 30%, #9fd6ff, #1e4fa8 70%, #0b1f4a);
+box-shadow:0 0 40px rgba(120,180,255,.6);z-index:-2}
+
 input,textarea{width:300px;padding:10px;border-radius:10px;border:none;margin:8px;background:#111;color:white}
-#box{width:380px;height:190px;margin:30px auto;border:2px dashed #6fa8ff;border-radius:20px;display:flex;align-items:center;justify-content:center;font-style:italic;font-weight:bold;background:rgba(255,255,255,.04);}
-#space{position:relative;height:360px;margin-top:15px}
-.star{position:absolute;background:rgba(255,255,255,.08);padding:14px 18px;border-radius:16px;cursor:grab;font-style:italic;font-weight:bold;}
+
+#box{width:380px;height:190px;margin:30px auto;border:2px dashed #6fa8ff;border-radius:20px;
+display:flex;align-items:center;justify-content:center;font-style:italic;font-weight:bold;background:rgba(255,255,255,.04)}
+
+#space{position:relative;height:360px}
+.star{position:absolute;background:rgba(255,255,255,.08);padding:14px 18px;border-radius:16px;cursor:grab;font-style:italic;font-weight:bold}
 .star button{float:right;background:none;border:none;color:#ffd700}
 #admin{display:none}
+#contact{position:fixed;left:15px;bottom:15px;text-align:left;opacity:.8;font-size:.9rem}
 footer{opacity:.6;font-size:.85rem;margin:35px 0}
 </style>
 </head>
 
 <body>
 
+<div class="saturn"></div><div class="mars"></div><div class="neptune"></div>
+
 <h1 id="title">Midnight Thoughts</h1>
 <p>Curious • Learning • Questioning</p>
 
-<p style="opacity:.6;font-size:.8rem;max-width:520px;margin:0 auto 20px">
-All content here represents personal thoughts and opinions.
-</p>
-
 <div id="admin">
-<input id="name" placeholder="Your name"><br>
-<textarea id="msg" placeholder="Your thought"></textarea><br>
+<input id="name" placeholder="Your name">
+<textarea id="msg" placeholder="Your thought"></textarea>
 <button id="postBtn">Post</button>
 </div>
 
@@ -81,58 +70,72 @@ All content here represents personal thoughts and opinions.
 <div id="space"></div>
 
 <h3>Visitor Space</h3>
-<input id="vname" placeholder="Your name"><br>
-<textarea id="vmsg" placeholder="Share your thought"></textarea><br>
+<input id="vname" placeholder="Your name">
+<textarea id="vmsg" placeholder="Share your thought"></textarea>
 <button id="shareBtn">Share</button>
 
+<div id="contact"><b>Contact</b><br>+91 8135921771<br>amitadhikari0125@gmail.com</div>
 <footer>© 2026 Amit Adhikari. All Rights Reserved.</footer>
 
 <script type="module">
-import { collection, addDoc, deleteDoc, doc, onSnapshot, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import { getFirestore, collection, addDoc, deleteDoc, doc, getDocs, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
+const app=initializeApp({
+ apiKey:"AIzaSyDWB2GGz8t1jemFswGAe7cicTlbXzTGlI4",
+ authDomain:"midnight-thoughts-697a5.firebaseapp.com",
+ projectId:"midnight-thoughts-697a5"
+});
+const db=getFirestore(app);
 const KEY="12345a";
-let logged=false, hold;
-const titleEl=document.getElementById("title");
-const adminEl=document.getElementById("admin");
-const boxEl=document.getElementById("box");
-const nameEl=document.getElementById("name");
-const msgEl=document.getElementById("msg");
-const postBtn=document.getElementById("postBtn");
-const space=document.getElementById("space");
-const vnameEl=document.getElementById("vname");
-const vmsgEl=document.getElementById("vmsg");
-const shareBtn=document.getElementById("shareBtn");
 
-titleEl.onmousedown=()=>hold=setTimeout(()=>{if(!logged&&prompt("Admin key:")==KEY){logged=true;adminEl.style.display="block";}},3000);
-titleEl.onmouseup=()=>clearTimeout(hold);
+let logged=false,hold;
+title.onmousedown=()=>hold=setTimeout(()=>prompt("Admin key:")==KEY&&(logged=true,admin.style.display="block",draw()),3000);
+title.onmouseup=()=>clearTimeout(hold);
 
 postBtn.onclick=async()=>{
- if(!nameEl.value||!msgEl.value) return;
- await setDoc(doc(db,"universe","main"),{main:{n:nameEl.value,t:msgEl.value}});
- nameEl.value="";msgEl.value="";
+ if(!name.value||!msg.value)return;
+ const old=await getDoc(doc(db,"main","box"));
+ if(old.exists()) await addDoc(collection(db,"stars"),old.data());
+ await setDoc(doc(db,"main","box"),{n:name.value,t:msg.value});
+ name.value="";msg.value="";draw();
 };
 
 shareBtn.onclick=async()=>{
- if(!vnameEl.value||!vmsgEl.value) return;
- await addDoc(collection(db,"stars"),{n:vnameEl.value,t:vmsgEl.value,x:200,y:200});
- vnameEl.value="";vmsgEl.value="";
+ if(!vname.value||!vmsg.value)return;
+ await addDoc(collection(db,"stars"),{n:vname.value,t:vmsg.value,x:200,y:200});
+ vname.value="";vmsg.value="";draw();
 };
 
-onSnapshot(doc(db,"universe","main"),d=>{
- if(d.exists()) boxEl.innerHTML="<b>"+d.data().main.n+"</b><br>"+d.data().main.t;
-});
-
-onSnapshot(collection(db,"stars"),snap=>{
+async function draw(){
  space.innerHTML="";
- snap.forEach(docu=>{
-  let o=docu.data();
-  let d=document.createElement("div");
-  d.className="star"; d.style.left=o.x+"px"; d.style.top=o.y+"px";
-  d.innerHTML="<b>"+o.n+"</b><br>"+o.t;
-  space.appendChild(d);
- });
-});
-</script>
+ const main=await getDoc(doc(db,"main","box"));
+ if(main.exists()) box.innerHTML="<b>"+main.data().n+"</b><br>"+main.data().t;
 
+ const snap=await getDocs(collection(db,"stars"));
+ snap.forEach(d=>{
+  let o=d.data(),el=document.createElement("div");
+  el.className="star";el.style.left=(o.x||100)+"px";el.style.top=(o.y||100)+"px";
+  el.innerHTML=(logged?`<button onclick="delStar('${d.id}')">❌</button>`:"")+"<b>"+o.n+"</b><br>"+o.t;
+  if(logged) drag(el,d.id); space.appendChild(el);
+ });
+}
+
+window.delStar=async id=>{await deleteDoc(doc(db,"stars",id));draw();}
+
+function drag(el,id){
+ el.onmousedown=e=>{
+  let ox=e.clientX-el.offsetLeft,oy=e.clientY-el.offsetTop;
+  document.onmousemove=m=>{
+   el.style.left=(m.clientX-ox)+"px";el.style.top=(m.clientY-oy)+"px";
+  };
+  document.onmouseup=async()=>{
+   await setDoc(doc(db,"stars",id),{n:el.querySelector("b").innerText,t:el.innerText.replace(el.querySelector("b").innerText,""),x:el.offsetLeft,y:el.offsetTop});
+   document.onmousemove=null;
+  };
+ }
+}
+draw();
+</script>
 </body>
 </html>
