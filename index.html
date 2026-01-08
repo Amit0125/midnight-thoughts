@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Midnight Thoughts</title>
+
+<style>
+body{
+margin:0;
+font-family:Segoe UI;
+color:white;
+text-align:center;
+background:black;
+overflow-x:hidden;
+}
+
+/* Nebula dust */
+body::before{
+content:"";
+position:fixed;inset:0;z-index:-4;
+background:
+radial-gradient(circle at 25% 35%, rgba(160,70,255,.28), transparent 45%),
+radial-gradient(circle at 70% 65%, rgba(60,200,255,.22), transparent 50%),
+radial-gradient(circle at 55% 85%, rgba(255,150,60,.18), transparent 45%);
+}
+
+/* Heavy starfield */
+body::after{
+content:"";
+position:fixed;inset:0;z-index:-3;
+background:
+radial-gradient(1px 1px at 3% 5%, #fff, transparent),
+radial-gradient(1px 1px at 7% 20%, #fff, transparent),
+radial-gradient(1px 1px at 10% 40%, #fff, transparent),
+radial-gradient(1px 1px at 14% 65%, #fff, transparent),
+radial-gradient(1px 1px at 18% 85%, #fff, transparent),
+radial-gradient(1px 1px at 25% 15%, #fff, transparent),
+radial-gradient(2px 2px at 30% 35%, #fff, transparent),
+radial-gradient(1px 1px at 35% 70%, #fff, transparent),
+radial-gradient(2px 2px at 40% 50%, #fff, transparent),
+radial-gradient(1px 1px at 45% 25%, #fff, transparent),
+radial-gradient(2px 2px at 50% 80%, #fff, transparent),
+radial-gradient(1px 1px at 55% 60%, #fff, transparent),
+radial-gradient(2px 2px at 60% 20%, #fff, transparent),
+radial-gradient(1px 1px at 65% 40%, #fff, transparent),
+radial-gradient(2px 2px at 70% 70%, #fff, transparent),
+radial-gradient(1px 1px at 75% 90%, #fff, transparent),
+radial-gradient(2px 2px at 80% 30%, #fff, transparent),
+radial-gradient(1px 1px at 85% 55%, #fff, transparent),
+radial-gradient(2px 2px at 90% 75%, #fff, transparent),
+radial-gradient(1px 1px at 95% 45%, #fff, transparent);
+opacity:.85;
+}
+
+/* Saturn */
+.saturn{
+position:fixed;right:5%;top:18%;
+width:150px;height:150px;border-radius:50%;
+background:radial-gradient(circle at 30% 30%, #fff7d6, #f1d29a 45%, #b88b4a 80%);
+box-shadow:0 0 70px rgba(255,220,150,.5);
+z-index:-2;
+}
+.saturn::after{
+content:"";position:absolute;left:-40%;top:40%;
+width:180%;height:28%;
+border:2px solid rgba(255,255,255,.4);
+border-radius:50%;
+transform:rotate(-18deg);
+}
+
+/* Mars */
+.mars{
+position:fixed;left:8%;top:22%;
+width:80px;height:80px;border-radius:50%;
+background:radial-gradient(circle at 30% 30%, #ffb199, #c1442e 65%, #7a2b1c);
+box-shadow:0 0 35px rgba(255,100,60,.6);
+z-index:-2;
+}
+
+/* Neptune */
+.neptune{
+position:fixed;right:12%;top:70%;
+width:95px;height:95px;border-radius:50%;
+background:radial-gradient(circle at 30% 30%, #9fd6ff, #1e4fa8 70%, #0b1f4a);
+box-shadow:0 0 40px rgba(120,180,255,.6);
+z-index:-2;
+}
+
+/* Asteroid belt */
+.asteroids{
+position:fixed;left:20%;top:60%;
+width:260px;height:140px;
+background:
+radial-gradient(2px 2px at 10% 30%, #aaa, transparent),
+radial-gradient(1px 1px at 20% 50%, #999, transparent),
+radial-gradient(2px 2px at 40% 60%, #ccc, transparent),
+radial-gradient(1px 1px at 70% 40%, #bbb, transparent),
+radial-gradient(2px 2px at 90% 55%, #ddd, transparent);
+opacity:.8;
+z-index:-2;
+}
+
+input,textarea{width:300px;padding:10px;border-radius:10px;border:none;margin:8px;background:#111;color:white}
+
+#box{
+width:380px;height:190px;margin:30px auto;
+border:2px dashed #6fa8ff;border-radius:20px;
+display:flex;align-items:center;justify-content:center;
+font-style:italic;font-weight:bold;
+background:rgba(255,255,255,.04);
+}
+
+#space{position:relative;height:360px;margin-top:15px}
+
+.star{
+position:absolute;background:rgba(255,255,255,.08);
+padding:14px 18px;border-radius:16px;
+cursor:grab;font-style:italic;font-weight:bold;
+}
+.star button{float:right;background:none;border:none;color:#ffd700}
+#admin{display:none}
+
+#contact{
+position:fixed;left:15px;bottom:15px;
+text-align:left;opacity:.8;font-size:.9rem
+}
+
+footer{opacity:.6;font-size:.85rem;margin:35px 0}
+</style>
+</head>
+
+<body>
+
+<div class="saturn"></div>
+<div class="mars"></div>
+<div class="neptune"></div>
+<div class="asteroids"></div>
+
+<h1 id="title">Midnight Thoughts</h1>
+<p>Curious • Learning • Questioning</p>
+
+<!-- Legal disclaimer under title -->
+<p style="opacity:.6;font-size:.8rem;max-width:520px;margin:0 auto 20px">
+All content here represents personal thoughts and opinions. It does not constitute professional, legal, medical, or financial advice.
+</p>
+
+
+<div id="admin">
+<input id="name" placeholder="Your name"><br>
+<textarea id="msg" placeholder="Your thought"></textarea><br>
+<button id="postBtn">Post</button>
+</div>
+
+<div id="box">to be updated...</div>
+<div id="space"></div>
+
+<div style="margin-top:-10px">
+<h3>Visitor Space</h3>
+<input id="vname" placeholder="Your name"><br>
+<textarea id="vmsg" placeholder="Share your thought"></textarea><br>
+<button id="shareBtn">Share</button>
+</div>
+
+<div id="contact">
+<b>Contact</b><br>
++91 8135921771<br>
+amitadhikari0125@gmail.com
+
+</div>
+
+<footer style="opacity:.7;font-size:.8rem;max-width:700px;margin:40px auto">
+All content on Midnight Thoughts represents personal opinions and is not professional advice.<br>
+Visitor submissions are stored locally in  browser and may be displayed publicly.<br>
+By submitting content, you grant permission to display it here.<br><br>
+
+© 2026 Amit Adhikari. All Rights Reserved.
+</footer>
+
+
+<script>
+const KEY="12345a";
+let logged=false, hold;
+
+const titleEl=document.getElementById("title");
+const adminEl=document.getElementById("admin");
+const boxEl=document.getElementById("box");
+const nameEl=document.getElementById("name");
+const msgEl=document.getElementById("msg");
+const postBtn=document.getElementById("postBtn");
+const space=document.getElementById("space");
+const vnameEl=document.getElementById("vname");
+const vmsgEl=document.getElementById("vmsg");
+const shareBtn=document.getElementById("shareBtn");
+
+let stars = JSON.parse(localStorage.getItem("stars")||"[]");
+let mainThought = JSON.parse(localStorage.getItem("mainThought")||"null");
+
+/* restore main box */
+if(mainThought){
+ boxEl.innerHTML="<b>"+mainThought.n+"</b><br>"+mainThought.t;
+ boxEl.dataset.name=mainThought.n;
+ boxEl.dataset.text=mainThought.t;
+}
+
+titleEl.onmousedown=()=>hold=setTimeout(toggle,3000);
+titleEl.onmouseup=()=>clearTimeout(hold);
+
+function toggle(){
+ if(!logged){
+  if(prompt("Admin key:")==KEY){logged=true;adminEl.style.display="block";}
+ } else {
+  logged=false;adminEl.style.display="none";
+ }
+ drawStars();
+}
+
+postBtn.onclick=function(){
+ let n=nameEl.value,m=msgEl.value;
+ if(!n||!m) return;
+
+ /* move old box to star */
+ if(boxEl.dataset.text){
+   stars.unshift({n:boxEl.dataset.name,t:boxEl.dataset.text,x:60,y:60});
+ }
+
+ boxEl.innerHTML="<b>"+n+"</b><br>"+m;
+ boxEl.dataset.name=n;
+ boxEl.dataset.text=m;
+
+ mainThought={n:n,t:m};
+ localStorage.setItem("mainThought",JSON.stringify(mainThought));
+ localStorage.setItem("stars",JSON.stringify(stars));
+
+ nameEl.value="";msgEl.value="";
+ drawStars();
+};
+
+shareBtn.onclick=function(){
+ let n=vnameEl.value,m=vmsgEl.value;
+ if(!n||!m) return;
+ stars.unshift({n:n,t:m,x:200,y:200});
+ localStorage.setItem("stars",JSON.stringify(stars));
+ vnameEl.value="";vmsgEl.value="";
+ drawStars();
+};
+
+function drawStars(){
+ space.innerHTML="";
+ stars.forEach((o,i)=>{
+  let d=document.createElement("div");
+  d.className="star";
+  d.style.left=o.x+"px";
+  d.style.top=o.y+"px";
+  d.innerHTML=(logged?`<button onclick="delStar(${i})">❌</button>`:"")+"<b>"+o.n+"</b><br>"+o.t;
+  if(logged) drag(d,i);
+  space.appendChild(d);
+ });
+}
+
+function delStar(i){
+ stars.splice(i,1);
+ localStorage.setItem("stars",JSON.stringify(stars));
+ drawStars();
+}
+
+function drag(el,i){
+ el.onmousedown=e=>{
+  let ox=e.clientX-el.offsetLeft,oy=e.clientY-el.offsetTop;
+  document.onmousemove=m=>{
+   el.style.left=(m.clientX-ox)+"px";
+   el.style.top=(m.clientY-oy)+"px";
+  };
+  document.onmouseup=()=>{
+   stars[i].x=el.offsetLeft;
+   stars[i].y=el.offsetTop;
+   localStorage.setItem("stars",JSON.stringify(stars));
+   document.onmousemove=null;
+  };
+ };
+}
+
+drawStars();
+</script>
+
+
+</body>
+</html>
